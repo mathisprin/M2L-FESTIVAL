@@ -81,7 +81,7 @@ function modifierEtablissement($connexion, $id, $nom, $adresseRue, $codePostal,
 function creerEtablissement($connexion, $id, $nom, $adresseRue, $codePostal, 
                             $ville, $tel, $adresseElectronique, $type, 
                             $civiliteResponsable, $nomResponsable, 
-                            $prenomResponsable, $nombreChambresOffertes)
+                            $prenomResponsable, $nombreChambresOffertes,$infosP)
 { 
    $nom=str_replace("'", "''", $nom);
    $adresseRue=str_replace("'","''", $adresseRue);
@@ -93,7 +93,7 @@ function creerEtablissement($connexion, $id, $nom, $adresseRue, $codePostal,
    $req="insert into Etablissement values ('$id', '$nom', '$adresseRue', 
          '$codePostal', '$ville', '$tel', '$adresseElectronique', '$type', 
          '$civiliteResponsable', '$nomResponsable', '$prenomResponsable',
-         '$nombreChambresOffertes')";
+         '$nombreChambresOffertes','$infosP')";
    
    $connexion->query($req);
 }

@@ -57,11 +57,11 @@ echo "
          <td width='52%'>$nom</td>
          
          <td width='16%' align='center'> 
-         <a href='detailEtablissement.php?id=$id'>
+         <a href='detailEtablissement.php?id=$id' class ='btn btn-light'>
          Voir détail</a></td>
          
          <td width='16%' align='center'> 
-         <a href='modificationEtablissement.php?action=demanderModifEtab&amp;id=$id'>
+         <a href='modificationEtablissement.php?action=demanderModifEtab&amp;id=$id' class ='btn btn-light'>
          Modifier</a></td>";
       	
          // S'il existe déjà des attributions pour l'établissement, il faudra
@@ -70,7 +70,7 @@ echo "
 			{
             echo "
             <td width='16%' align='center'> 
-            <a href='suppressionEtablissement.php?action=demanderSupprEtab&amp;id=$id'>
+            <a href='suppressionEtablissement.php?action=demanderSupprEtab&amp;id=$id' class ='btn btn-light'>
             Supprimer</a></td>";
          }
          else
@@ -84,8 +84,10 @@ echo "
 
    } 
    echo "
-   <tr class='ligneTabNonQuad'>
-      <td colspan='4'><a href='creationEtablissement.php?action=demanderCreEtab'>Création d'un établissement</a></td>
-   </tr>";
+   </table>
+   <div class = 'middle'>
+      <p><a href='creationEtablissement.php?action=demanderCreEtab' class ='btn btn-light'>Création d'un établissement</a></p>
+   </div>";
+
 }  
 ?>

@@ -12,7 +12,7 @@ Idem pour background-color) */
 }
 
 /* Style pour le titre (couleur du texte : rouge) */
-.head 
+.head
 {
    background-color:#555251;
    color:#CEC3BF;
@@ -219,4 +219,31 @@ td.reserve
     cursor:pointer;
     -webkit-border-radius: 5px;
     border-radius: 20px;
+}
+ a.btn.btn-light{
+  border-radius: 20px;
+  color:#555251;
+}
+
+ a.btn.btn-light:hover{
+  border-radius: 20px;
+  color:#3F5EE1;
+
+}
+body > div.head {
+  padding-top:1rem;
+}
+
+body > div.head > p.sous_titre {
+  margin:0;
+  padding-bottom:1rem;
+}
+
+nav.navbar.navbar-inverse{
+  border-radius: 0px;
+}
+
+div.middle{
+  position:absolute;
+  left:42vw;
 }

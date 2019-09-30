@@ -13,9 +13,9 @@ else
 {
     echo "USER : ",$_SESSION['id'];
     echo "<div class='description'>
-      <p class='texteAccueil'>Cette application web permet de gérer l'hébergement des ligues sportive 
-            durant les rencontres.</p></br>
-      <p class='texteAccueil'>Elle offre les services suivants :</p><br>
+      <br><p class='texteAccueil'>Cette application web permet de gérer l'hébergement des ligues sportive 
+            durant les rencontres.</p>
+      <p class='texteAccueil'>Elle offre les services suivants :</p>
       <ul class='list'>
          <p> - Gérer les établissements (caractéristiques et capacités d'accueil) acceptant d'héberger les groupes de sportifs.<br>
           - Consulter, réaliser ou modifier les attributions des chambres aux groupes dans les établissements.</p>

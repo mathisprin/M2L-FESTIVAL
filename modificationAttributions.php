@@ -160,7 +160,7 @@ echo "
 echo "
 <table align='center' width='80%'>
    <tr>
-      <td width='34%' align='left'><a href='consultationAttributions.php'>Retour</a>
+      <td width='34%' align='left'><a href='consultationAttributions.php' class='btn btn-light'>Retour</a>
       </td>
       <td class='reserveSiLien'>&nbsp;</td>
       <td width='30%' align='left'>Réservation possible si lien</td>

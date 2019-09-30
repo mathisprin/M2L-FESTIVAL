@@ -29,12 +29,7 @@ else
 $nbEtab=obtenirNbEtabOffrantChambres($connexion);
 if ($nbEtab!=0)
 {
-   echo "
-   <div class='table-responsive'>
-   <table width='75%' cellspacing='0' cellpadding='0' align='center'class='tabQuadrille'
-   <tr><td>
-   <a href='modificationAttributions.php?action=demanderModifAttrib'>
-   Effectuer ou modifier les attributions</a></td></tr></table><br><br>";
+  
    
    // POUR CHAQUE ÉTABLISSEMENT : AFFICHAGE D'UN TABLEAU COMPORTANT 2 LIGNES 
    // D'EN-TÊTE ET LE DÉTAIL DES ATTRIBUTIONS
@@ -100,6 +95,12 @@ if ($nbEtab!=0)
       $lgEtab=$rsEtab->fetch(PDO::FETCH_ASSOC);
    } // Fin de la boucle sur les établissements
 }
+ echo "
+   <div class='table-responsive'>
+   <table width='75%' cellspacing='0' cellpadding='0' align='center'class='tabQuadrille'
+   <tr><td>
+   <a href='modificationAttributions.php?action=demanderModifAttrib' class ='btn btn-light'>
+   Effectuer ou modifier les attributions</a></td></tr></table><br><br>";
 }
 
 ?>

@@ -179,18 +179,18 @@ echo "
    </table>';
    
    echo "
-   <table align='center' cellspacing='15' cellpadding='0'>
-      <tr>
-         <td align='right'><input type='submit' value='Valider' name='valider' id='submit'>
-         </td>
-         <td align='left'><input type='reset' value='Annuler' name='annuler' id='submit'>
-         </td>
-      </tr>
-      <tr>
-         <td colspan='2' align='center'><a href='listeEtablissements.php'>Retour</a>
-         </td>
-      </tr>
-   </table>
+   <div align='center' cellspacing='15' cellpadding='0'>
+      <p>
+         <p align='center'><input type='submit' value='Valider' name='valider' id='submit'>
+         
+          <input type='reset' value='Annuler' name='annuler' id='submit'>
+         </p>
+      </p>
+      <p>
+         <p colspan='2' align='center'><a href='listeEtablissements.php'>Retour</a>
+         </p>
+      </p>
+   </div>
   
 </form>";
 

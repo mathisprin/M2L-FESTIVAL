@@ -98,11 +98,11 @@ class='tabNonQuadrille'>
       <td>$infosP</td>
    </tr>
 </table>
-<table align='center'>
-   <tr>
-      <td align='center'><a href='listeEtablissements.php'>Retour</a>
-      </td>
-   </tr>
-</table>";
+<div align='center'>
+   <p>
+      <p align='center'><a href='listeEtablissements.php'>Retour</a>
+      </p>
+   </p>
+</div>";
 }
 ?>

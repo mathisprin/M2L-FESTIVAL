@@ -39,6 +39,7 @@ if ($action=='demanderCreEtab')
    $nomResponsable='';
    $prenomResponsable='';
    $nombreChambresOffertes='';
+   $infosP='';
 }
 else
 {
@@ -54,14 +55,15 @@ else
    $nomResponsable=$_REQUEST['nomResponsable'];
    $prenomResponsable=$_REQUEST['prenomResponsable'];
    $nombreChambresOffertes=$_REQUEST['nombreChambresOffertes'];
+   $infosP=$_REQUEST['infosP'];
 
    verifierDonneesEtabC($connexion, $id, $nom, $adresseRue, $codePostal, $ville, 
-                        $tel, $nomResponsable, $nombreChambresOffertes);      
+                        $tel, $nomResponsable, $nombreChambresOffertes,$infosP);      
    if (nbErreurs()==0)
    {        
       creerEtablissement($connexion, $id, $nom, $adresseRue, $codePostal, $ville,  
                          $tel, $adresseElectronique, $type, $civiliteResponsable, 
-                         $nomResponsable, $prenomResponsable, $nombreChambresOffertes);
+                         $nomResponsable, $prenomResponsable, $nombreChambresOffertes,$infosP);
    }
 }
 
@@ -160,14 +162,19 @@ echo "
             <td><input type="text" value="'.$nombreChambresOffertes.'" name=
             "nombreChambresOffertes" size ="2" maxlength="3"></td>
          </tr>
+         <tr class="ligneTabNonQuad">
+         <td> Infos Pratiques : </td>
+         <td><input type="text" value="'.$infosP.'" name="infosP" 
+         size="80" maxlength="250"></td>
+      </tr>
    </table>';
    
    echo "
    <table align='center' cellspacing='15' cellpadding='0'>
       <tr>
-         <td align='right'><input type='submit' value='Valider' name='valider'>
+         <td align='right'><input type='submit' value='Valider' name='valider' id='submit'>
          </td>
-         <td align='left'><input type='reset' value='Annuler' name='annuler'>
+         <td align='left'><input type='reset' value='Annuler' name='annuler' id='submit'>
          </td>
       </tr>
       <tr>

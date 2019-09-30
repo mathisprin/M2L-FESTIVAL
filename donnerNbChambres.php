@@ -46,7 +46,7 @@ echo "
    </select></h5>
    <input type='submit' value='Valider' name='valider' id='submit'>&nbsp&nbsp&nbsp&nbsp
    <input type='reset' value='Annuler' name='Annuler' id='submit'><br><br>
-   <a href='modificationAttributions.php?action=demanderModifAttrib'>Retour</a>
+   <a href='modificationAttributions.php?action=demanderModifAttrib' class='btn btn-light'>Retour</a>
    </center>
 </form>";
 
