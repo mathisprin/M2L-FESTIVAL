@@ -1,39 +1,34 @@
 <?php
-
 include "_debut.inc.php";
+session_start();
+if (empty($_SESSION['id']))
+{
+    echo '<center><font color="red" size="4"><b>Vous devez vous connecter pour acceder à l\'application</center></font><br />
+    <FORM ACTION="connexion.php">
+    <center><INPUT TYPE="SUBMIT" VALUE="Se connecter" id="submit"></center>
+  </FORM>';
 
-?>
-<table width='80%' cellspacing='0' cellpadding='0' align='center'>
-   <tr>  
-      <td class='texteAccueil'>
-         Cette application web permet de gérer l'hébergement des groupes de musique 
-         durant le festival Folklores du Monde.
-      </td>
-   </tr>
-   <tr>
-      <td>&nbsp;
-      </td>
-   </tr>
-   <tr>
-      <td class='texteAccueil'>
-          Elle offre les services suivants :
-      </td>
-   </tr>
-   <tr>
-      <td>&nbsp;
-      </td>
-   </tr>
-   <tr>
-      <td class='texteAccueil'>
-      <ul>
-         <li>Gérer les établissements (caractéristiques et capacités d'accueil) acceptant d'héberger les groupes de musiciens.
-         <p>
-	      </p>
-         <li>Consulter, réaliser ou modifier les attributions des chambres aux groupes dans les établissements.
+}
+else
+{
+    echo "USER : ",$_SESSION['id'];
+    echo "<div class='description'>
+      <p class='texteAccueil'>Cette application web permet de gérer l'hébergement des ligues sportive 
+            durant les rencontres.</p></br>
+      <p class='texteAccueil'>Elle offre les services suivants :</p><br>
+      <ul class='list'>
+         <p> - Gérer les établissements (caractéristiques et capacités d'accueil) acceptant d'héberger les groupes de sportifs.<br>
+          - Consulter, réaliser ou modifier les attributions des chambres aux groupes dans les établissements.</p>
       </ul>
-      </td>
-   </tr>
-</table>";
+   </div>";
+}
+
+
+
+   
+  
+
+   
 
 
 

@@ -13,7 +13,14 @@ if (!$connexion)
    afficherErreurs();
    exit();
 }
+session_start();
+if (empty($_SESSION['id']))
+{
+    header("location:index.php");
 
+}
+else
+{
 
 $id=$_REQUEST['id'];  
 
@@ -32,6 +39,7 @@ $civiliteResponsable=$lgEtab['civiliteResponsable'];
 $nomResponsable=$lgEtab['nomResponsable'];
 $prenomResponsable=$lgEtab['prenomResponsable'];
 $nombreChambresOffertes=$lgEtab['nombreChambresOffertes'];
+$infosP=$lgEtab['infosP'];
 
 echo "
 <table width='60%' cellspacing='0' cellpadding='0' align='center' 
@@ -68,7 +76,7 @@ class='tabNonQuadrille'>
       <td> Type: </td>";
       if ($type==1)
       {
-         echo "<td> Etablissement scolaire </td>";
+         echo "<td> Hotel </td>";
       }
       else
       {
@@ -85,6 +93,10 @@ class='tabNonQuadrille'>
       <td> Offre: </td>
       <td>$nombreChambresOffertes&nbsp;chambre(s)</td>
    </tr>
+   <tr class='ligneTabNonQuad'>
+      <td> Infos Pratiques: </td>
+      <td>$infosP</td>
+   </tr>
 </table>
 <table align='center'>
    <tr>
@@ -92,4 +104,5 @@ class='tabNonQuadrille'>
       </td>
    </tr>
 </table>";
+}
 ?>

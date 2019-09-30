@@ -14,7 +14,14 @@ if (!$connexion)
    exit();
 }
    
+session_start();
+if (empty($_SESSION['id']))
+{
+    header("location:index.php");
 
+}
+else
+{
 // CONSULTER LES ATTRIBUTIONS DE TOUS LES ÉTABLISSEMENTS
 
 // IL FAUT QU'IL Y AIT AU MOINS UN ÉTABLISSEMENT OFFRANT DES CHAMBRES POUR  
@@ -23,7 +30,8 @@ $nbEtab=obtenirNbEtabOffrantChambres($connexion);
 if ($nbEtab!=0)
 {
    echo "
-   <table width='75%' cellspacing='0' cellpadding='0' align='center'
+   <div class='table-responsive'>
+   <table width='75%' cellspacing='0' cellpadding='0' align='center'class='tabQuadrille'
    <tr><td>
    <a href='modificationAttributions.php?action=demanderModifAttrib'>
    Effectuer ou modifier les attributions</a></td></tr></table><br><br>";
@@ -91,6 +99,7 @@ if ($nbEtab!=0)
       </table><br>";
       $lgEtab=$rsEtab->fetch(PDO::FETCH_ASSOC);
    } // Fin de la boucle sur les établissements
+}
 }
 
 ?>

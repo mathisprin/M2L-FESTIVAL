@@ -22,8 +22,10 @@ function connect()
 // FONCTIONS DE GESTION DES ÉTABLISSEMENTS
 
 function obtenirReqEtablissements()
-{
-   $req="select id, nom from Etablissement order by id";
+{ 
+
+   $req="select id, nom from Etablissement  order by id";
+
    return $req;
 }
 
@@ -57,7 +59,7 @@ function supprimerEtablissement($connexion, $id)
 function modifierEtablissement($connexion, $id, $nom, $adresseRue, $codePostal, 
                                $ville, $tel, $adresseElectronique, $type, 
                                $civiliteResponsable, $nomResponsable, 
-                               $prenomResponsable, $nombreChambresOffertes)
+                               $prenomResponsable, $nombreChambresOffertes,$infosP)
 {  
    $nom=str_replace("'", "''", $nom);
    $adresseRue=str_replace("'","''", $adresseRue);
@@ -71,7 +73,7 @@ function modifierEtablissement($connexion, $id, $nom, $adresseRue, $codePostal,
          adresseElectronique='$adresseElectronique',type='$type',
          civiliteResponsable='$civiliteResponsable',nomResponsable=
          '$nomResponsable',prenomResponsable='$prenomResponsable',
-         nombreChambresOffertes='$nombreChambresOffertes' where id='$id'";
+         nombreChambresOffertes='$nombreChambresOffertes',infosP='$infosP' where id='$id'";
    
       $connexion->query($req);
 }
@@ -192,7 +194,7 @@ function modifierAttribChamb($connexion, $idEtab, $idGroupe, $nbChambres)
    $req="select count(*) as nombreAttribGroupe from Attribution where idEtab=
         '$idEtab' and idGroupe='$idGroupe'";
    $rsAttrib=$connexion->query($req);
-   $lgAttrib=fetch(PDO::FETCH_ASSOC);
+   $lgAttrib=$rsAttrib->fetch(PDO::FETCH_ASSOC);
    if ($nbChambres==0)
       $req="delete from Attribution where idEtab='$idEtab' and idGroupe='$idGroupe'";
    else
@@ -203,7 +205,7 @@ function modifierAttribChamb($connexion, $idEtab, $idGroupe, $nbChambres)
       else
          $req="insert into Attribution values('$idEtab','$idGroupe', $nbChambres)";
    }
-   mysql_query($req, $connexion);
+   $connexion->query($req);
 }
 
 // Retourne la requête permettant d'obtenir les id et noms des groupes affectés

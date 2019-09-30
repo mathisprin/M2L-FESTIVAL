@@ -13,22 +13,40 @@ if (!$connexion)
    afficherErreurs();
    exit();
 }
+session_start();
+if (empty($_SESSION['id']))
+{
+    header("location:index.php");
 
+}
+else
+{
 
 // AFFICHER L'ENSEMBLE DES ÉTABLISSEMENTS
 // CETTE PAGE CONTIENT UN TABLEAU CONSTITUÉ D'1 LIGNE D'EN-TÊTE ET D'1 LIGNE PAR
 // ÉTABLISSEMENT
 
 echo "
-<table width='70%' cellspacing='0' cellpadding='0' align='center' 
-class='tabNonQuadrille'>
-   <tr class='enTeteTabNonQuad'>
-      <td colspan='4'>Etablissements</td>
-   </tr>";
+<div class='table-responsive'>
+   <table width='70%' cellspacing='0' cellpadding='0' align='center' 
+   class='tabNonQuadrille'>
+      <tr class='enTeteTabNonQuad'>
+         <td colspan='4'>Etablissements</td>
+      </tr>";
+
      
-   $req=obtenirReqEtablissements();
+   
+   /*$iden=$_SESSION['id'];
+   //where id='$iden'
+   $reqk="select id, nom from Etablissement  order by id"; 
+   $rsEtab1 = $connexion->query($reqk);
+   $lgEtab1 = $rsEtab1->fetch();*/
+     
+   $req = obtenirReqEtablissements();
    $rsEtab = $connexion->query($req);
    $lgEtab = $rsEtab->fetch();
+
+ 
    // BOUCLE SUR LES ÉTABLISSEMENTS
    while ($lgEtab!=FALSE)
    {
@@ -63,12 +81,11 @@ class='tabNonQuadrille'>
 			echo "
       </tr>";
       $lgEtab = $rsEtab->fetch();   
-   }   
+
+   } 
    echo "
    <tr class='ligneTabNonQuad'>
-      <td colspan='4'><a href='creationEtablissement.php?action=demanderCreEtab'>
-      Création d'un établissement</a ></td>
-  </tr>
-</table>";
-
+      <td colspan='4'><a href='creationEtablissement.php?action=demanderCreEtab'>Création d'un établissement</a></td>
+   </tr>";
+}  
 ?>

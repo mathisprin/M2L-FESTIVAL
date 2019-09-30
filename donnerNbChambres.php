@@ -13,7 +13,7 @@ if (!$connexion)
    afficherErreurs();
    exit();
 }
-if (!selectBase($connexion))
+if (!($connexion))
 {
    ajouterErreur("La base de données festival est inexistante ou non accessible");
    afficherErreurs();
@@ -44,8 +44,8 @@ echo "
    }
    echo "
    </select></h5>
-   <input type='submit' value='Valider' name='valider'>&nbsp&nbsp&nbsp&nbsp
-   <input type='reset' value='Annuler' name='Annuler'><br><br>
+   <input type='submit' value='Valider' name='valider' id='submit'>&nbsp&nbsp&nbsp&nbsp
+   <input type='reset' value='Annuler' name='Annuler' id='submit'><br><br>
    <a href='modificationAttributions.php?action=demanderModifAttrib'>Retour</a>
    </center>
 </form>";

@@ -13,7 +13,14 @@ if (!$connexion)
    afficherErreurs();
    exit();
 }
+session_start();
+if (empty($_SESSION['id']))
+{
+    header("location:index.php");
 
+}
+else
+{
 // EFFECTUER OU MODIFIER LES ATTRIBUTIONS POUR L'ENSEMBLE DES ÉTABLISSEMENTS
 
 // CETTE PAGE CONTIENT UN TABLEAU CONSTITUÉ DE 2 LIGNES D'EN-TÊTE (LIGNE TITRE ET 
@@ -161,5 +168,6 @@ echo "
       <td width='30%' align='left'>Chambres réservées</td>
    </tr>
 </table>";
-
+}
 ?>
+

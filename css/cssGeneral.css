@@ -6,34 +6,33 @@ Idem pour background-color) */
 /* Style de base pour la page (couleur fond : ocre, couleur texte : noir) */
 .basePage 
 {
-   background-color:#FFDD88;
+   background-color:#ffffff;
    color:black;
-   font:11px Arial, Helvetica, sans-serif;
+   font:15px Arial, Helvetica, sans-serif;
 }
 
 /* Style pour le titre (couleur du texte : rouge) */
-.titre 
+.head 
 {
-   background-color:#FFDD88;
-   color:#F50033;
+   background-color:#555251;
+   color:#CEC3BF;
    font:30px Arial, Helvetica, sans-serif;
    text-align:center;
 }
 
 /* Style pour le texte de 2ème niveau du titre */
-.texteNiveau2
-{
-   font:20px Arial, Helvetica, sans-serif;
-}
+
 
 /* Style pour le texte de la page d'accueil (couleur : bleu foncé avec mise en
 gras et en italique) */
-.texteAccueil
+div.description
 {
-   background-color:#FFDD88;
-   color:#000099;       
-   font:14px Georgia, "Times New Roman", Times, serif;
-   font-weight:bold;
+   background-color:#ffffff;
+   color:#000000;       
+   font:15px Arial, Helvetica, sans-serif;
+   text-align: center;
+
+
 }
 
 /* Style pour le texte dans les différentes balises citées */
@@ -74,22 +73,30 @@ table.tabMenu td
 
 /* Style des tableaux avec quadrillage : épaisseur du quadrillage 1px, 
 espacement de 3x entre la bordure gauche de chaque cellule et le texte */
-table.tabQuadrille td
+table.tabNonQuadrille td
 {
    border-bottom:1px solid #777777;
    border-right:1px solid #777777;
    border-left:1px solid #777777;
    border-top:1px #777777;
    padding-left:3px;
+   
 } 
 
 /* Style pour la 1ère ligne d'en-tête des tableaux quadrillés : fond avec 
 nuances de jaune et texte centré */
 tr.enTeteTabQuad
 {
-   background-image:url('../images/xpBarre.jpg');
+   
    height:21px;
    text-align:center;
+   background-color: #2e2e2d;
+   color: white;
+
+}
+div.table-responsive
+{
+
 } 
 
 /* Style pour les lignes (autres que la 1ère ligne d'en-tête) des tableaux 
@@ -107,7 +114,7 @@ tr.ligneTabQuad
 1px */
 table.tabNonQuadrille 
 {
-   background-color:#FFFFE0;
+   background-color:#FFFFF0;
    border-bottom:1px solid #777777;
    border-right:1px solid #777777;
    border-left:1px solid #777777;
@@ -120,11 +127,13 @@ nuances de jaune, texte centré et en gras et trait bas pour séparer l'en-tête
 corps du tableau */
 tr.enTeteTabNonQuad td
 {
-   background-image:url('../images/xpBarre.jpg');
    height:21px;
    text-align:center;
    font-weight:bold;
    border-bottom:1px solid #777777;
+   border-top: :1px solid #777777;
+   background-color: #2e2e2d;
+   color: white;  
 } 
 
 /* Style pour les lignes (autres que la 1ère ligne d'en-tête) des tableaux non 
@@ -161,7 +170,53 @@ td.reserveSiLien
 /* Fond parme */
 td.reserve
 {
-   background-color:#FFBEFF;
+   background-color:#D9CFCC;
    color:black;
 }
+.navbar-default .navbar-collapse{
+   
+}
+.navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+.Tableau span {
+   display:inline;
+   float:left;
+   border:1px solid #FF6600;
+   margin:0px;
+   padding:3px;
+  }
+.Tableau p {
+   clear:left;
+   margin:0px;
+   padding:0px;
+   height:100% !important; height:1em;
+  }
+.Tableau p.legende {font-weight:bold}
+.Tableau span.col1 {width:70px}
+.Tableau span.col2 {width:120px}
+.Tableau span.col3 {width:90px}
 
+#submit{
+   padding:5px 15px;
+   margin-top: 5px; 
+    background:#555251; 
+    color: #CEC3BF;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 20px;
+}
+
+#submit:hover{
+   padding:5px 15px;
+   margin-top: 5px; 
+    background:#ffffff; 
+    color: #000000;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 20px;
+}

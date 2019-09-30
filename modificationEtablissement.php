@@ -14,7 +14,14 @@ if (!$connexion)
    exit();
 }
 
+session_start();
+if (empty($_SESSION['id']))
+{
+    header("location:index.php");
 
+}
+else
+{
 // MODIFIER UN ÉTABLISSEMENT 
 
 // Déclaration du tableau des civilités
@@ -41,6 +48,9 @@ if ($action=='demanderModifEtab')
    $nomResponsable=$lgEtab['nomResponsable'];
    $prenomResponsable=$lgEtab['prenomResponsable'];
    $nombreChambresOffertes=$lgEtab['nombreChambresOffertes'];
+   $infosP=$lgEtab['infosP'];
+   
+
 }
 else
 {
@@ -55,14 +65,16 @@ else
    $nomResponsable=$_REQUEST['nomResponsable'];
    $prenomResponsable=$_REQUEST['prenomResponsable'];
    $nombreChambresOffertes=$_REQUEST['nombreChambresOffertes'];
+   $infosP=$_REQUEST['infosP'];
+      
 
    verifierDonneesEtabM($connexion, $id, $nom, $adresseRue, $codePostal, $ville,  
-                        $tel, $nomResponsable, $nombreChambresOffertes);      
+                        $tel, $nomResponsable, $nombreChambresOffertes,$infosP);      
    if (nbErreurs()==0)
    {        
       modifierEtablissement($connexion, $id, $nom, $adresseRue, $codePostal, $ville, 
                             $tel, $adresseElectronique, $type, $civiliteResponsable, 
-                            $nomResponsable, $prenomResponsable, $nombreChambresOffertes);
+                            $nomResponsable, $prenomResponsable, $nombreChambresOffertes,$infosP);
    }
 }
 
@@ -91,7 +103,7 @@ echo "
          size="50" maxlength="45"></td>
       </tr>
       <tr class="ligneTabNonQuad">
-         <td> Code postal*: </td>
+         <td> Code postal* (5): </td>
          <td><input type="text" value="'.$codePostal.'" name="codePostal" 
          size="4" maxlength="5"></td>
       </tr>
@@ -101,14 +113,14 @@ echo "
          maxlength="35"></td>
       </tr>
       <tr class="ligneTabNonQuad">
-         <td> Téléphone*: </td>
+         <td> Téléphone*(10): </td>
          <td><input type="text" value="'.$tel.'" name="tel" size ="20" 
          maxlength="10"></td>
       </tr>
       <tr class="ligneTabNonQuad">
          <td> E-mail: </td>
          <td><input type="text" value="'.$adresseElectronique.'" name=
-         "adresseElectronique" size ="75" maxlength="70"></td>
+         "adresseElectronique"placeholder="exemple@gmail.com" size ="75" maxlength="70"></td>
       </tr>
       <tr class="ligneTabNonQuad">
          <td> Type*: </td>
@@ -117,7 +129,7 @@ echo "
             {
                echo " 
                <input type='radio' name='type' value='1' checked>  
-               Etablissement Scolaire
+               Hotels
                <input type='radio' name='type' value='0'>  Autre";
              }
              else
@@ -159,14 +171,19 @@ echo "
             <td><input type="text" value="'.$nombreChambresOffertes.'" name=
             "nombreChambresOffertes" size ="2" maxlength="3"></td>
          </tr>
+         <tr class="ligneTabNonQuad">
+            <td> Informations Pratiques: </td>
+            <td><input type="text" value="'.$infosP.'" name="infosP" size="100" 
+         maxlength="250"></td>
+      </tr>
    </table>';
    
    echo "
    <table align='center' cellspacing='15' cellpadding='0'>
       <tr>
-         <td align='right'><input type='submit' value='Valider' name='valider'>
+         <td align='right'><input type='submit' value='Valider' name='valider' id='submit'>
          </td>
-         <td align='left'><input type='reset' value='Annuler' name='annuler'>
+         <td align='left'><input type='reset' value='Annuler' name='annuler' id='submit'>
          </td>
       </tr>
       <tr>
@@ -191,5 +208,5 @@ if ($action=='validerModifEtab')
       <h5><center>La modification de l'établissement a été effectuée</center></h5>";
    }
 }
-
+}
 ?>

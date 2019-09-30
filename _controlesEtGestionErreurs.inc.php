@@ -6,15 +6,26 @@
 // considère qu'il s'agit d'un code postal
 function estUnCp($codePostal)
 {
-   // Le code postal doit comporter 5 chiffres
-   return strlen($codePostal)== 5 && estEntier($codePostal);
+   if ( preg_match ( "%^[0-9]{5,5}$% " , $codePostal ) )
+   {
+      return true;
+   }
+}
+
+// considère qu'il s'agit d'un code postal
+function estUnTel($tel)
+{
+   if ( preg_match ( "%^[0-9]{10,10}$% " , $tel ) )
+   {
+      return true;
+   }
 }
 
 // Si la valeur transmise ne contient pas d'autres caractères que des chiffres, 
 // la fonction retourne vrai
 function estEntier($valeur)
 {
-   return !preg_match("[^0-9]", $valeur);
+   return !preg_match("[0-9]", $valeur);
 }
 
 // Si la valeur transmise ne contient pas d'autres caractères que des chiffres  
@@ -45,8 +56,11 @@ function verifierDonneesEtabM($connexion, $id, $nom, $adresseRue, $codePostal,
    if ($nombreChambresOffertes!="" && (!estEntier($nombreChambresOffertes) ||
        !estModifOffreCorrecte($connexion, $id, $nombreChambresOffertes)))
    {
-      ajouterErreur
-      ("La valeur de l'offre est non entière ou inférieure aux attributions effectuées");
+      ajouterErreur("La valeur de l'offre est non entière ou inférieure aux attributions effectuées");
+   }
+   if ($tel!=estUnTel($tel))
+   {
+      ajouterErreur("le numéro de téléphone doit contenir uniquement des chiffres");
    }
 }
 
