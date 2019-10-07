@@ -1,7 +1,7 @@
 <?php
 
 include("_debut.inc.php");
-include("_gestionBase.inc.php"); 
+include("_gestionBase.inc.php");
 include("_controlesEtGestionErreurs.inc.php");
 
 // CONNEXION AU SERVEUR MYSQL PUIS SÉLECTION DE LA BASE DE DONNÉES festival
@@ -13,12 +13,14 @@ if (!$connexion)
    afficherErreurs();
    exit();
 }
-if (!($connexion))
+session_start();
+if (empty($_SESSION['id']))
 {
-   ajouterErreur("La base de données festival est inexistante ou non accessible");
-   afficherErreurs();
-   exit();
+    header("location:index.php");
+
 }
+else
+{
 
 // SÉLECTIONNER LE NOMBRE DE CHAMBRES SOUHAITÉES
 
@@ -32,11 +34,11 @@ echo "
    <input type='hidden' value='$idEtab' name='idEtab'>
    <input type='hidden' value='$idGroupe' name='idGroupe'>";
    $nomGroupe=obtenirNomGroupe($connexion, $idGroupe);
-   
+
    echo "
-   <br><center><h5>Combien de chambres souhaitez-vous pour le 
+   <br><center><h5>Combien de chambres souhaitez-vous pour le
    groupe $nomGroupe dans cet établissement ?";
-   
+
    echo "&nbsp;<select name='nbChambres'>";
    for ($i=0; $i<=$nbChambres; $i++)
    {
@@ -49,5 +51,5 @@ echo "
    <a href='modificationAttributions.php?action=demanderModifAttrib' class='btn btn-light'>Retour</a>
    </center>
 </form>";
-
+}
 ?>

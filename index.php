@@ -13,7 +13,7 @@ else
 {
     echo "USER : ",$_SESSION['id'];
     echo "<div class='description'>
-      <br><p class='texteAccueil'>Cette application web permet de gérer l'hébergement des ligues sportive 
+      <br><p class='texteAccueil'>Cette application web permet de gérer l'hébergement des ligues sportive
             durant les rencontres.</p>
       <p class='texteAccueil'>Elle offre les services suivants :</p>
       <ul class='list'>
@@ -22,14 +22,3 @@ else
       </ul>
    </div>";
 }
-
-
-
-   
-  
-
-   
-
-
-
-

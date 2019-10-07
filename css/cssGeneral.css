@@ -165,13 +165,16 @@ td.reserveSiLien
 {
    background-color:#FFFFFF;
    color:black;
+   border-radius: 5px;
+   height: 18px;
 }
 
 /* Fond parme */
 td.reserve
 {
-   background-color:#D9CFCC;
+   background-color:#BCBEBF;
    color:black;
+   height: 18px;
 }
 .navbar-default .navbar-collapse{
    
@@ -246,4 +249,8 @@ nav.navbar.navbar-inverse{
 div.middle{
   position:absolute;
   left:42vw;
+}
+
+#internal-anchor{
+  color: white;
 }

@@ -1,7 +1,7 @@
 <?php
 
 include("_debut.inc.php");
-include("_gestionBase.inc.php"); 
+include("_gestionBase.inc.php");
 include("_controlesEtGestionErreurs.inc.php");
 
 // CONNEXION AU SERVEUR MYSQL PUIS SÉLECTION DE LA BASE DE DONNÉES festival
@@ -14,20 +14,27 @@ if (!$connexion)
    exit();
 }
 
+session_start();
+if (empty($_SESSION['id']))
+{
+    header("location:index.php");
 
-// SUPPRIMER UN ÉTABLISSEMENT 
+}
+else
+{
+// SUPPRIMER UN ÉTABLISSEMENT
 
-$id=$_REQUEST['id'];  
+$id=$_REQUEST['id'];
 
 $lgEtab=obtenirDetailEtablissement($connexion, $id);
 $nom=$lgEtab['nom'];
 
 // Cas 1ère étape (on vient de listeEtablissements.php)
 
-if ($_REQUEST['action']=='demanderSupprEtab')    
+if ($_REQUEST['action']=='demanderSupprEtab')
 {
    echo "
-   <br><center><h5>Souhaitez-vous vraiment supprimer l'établissement $nom ? 
+   <br><center><h5>Souhaitez-vous vraiment supprimer l'établissement $nom ?
    <br><br>
    <a href='suppressionEtablissement.php?action=validerSupprEtab&amp;id=$id'>
    Oui</a>&nbsp; &nbsp; &nbsp; &nbsp;
@@ -43,5 +50,5 @@ else
    <br><br><center><h5>L'établissement $nom a été supprimé</h5>
    <a href='listeEtablissements.php?'>Retour</a></center>";
 }
-
+}
 ?>

@@ -66,13 +66,17 @@
       <div class="collapse navbar-collapse" id="alignment-example">
 
       <!-- Links -->
-        <ul class="nav navbar-nav ">
+        <ul class="nav navbar-nav">
 
           <li><a href="listeEtablissements.php">Gestion établissements des ligues</a></li>
           <li><a href="consultationAttributions.php">Attributions chambres</a></li>
           <?php 
                 echo"<li><a href='deconnexion.php'>déconnexion</a></li>";
             ?>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a id="internal-anchor"> H&eacute;bergement des groupes</a></li>
+          <img src="./images\mdl.jpg" width="60" height="60"  border="0" />
         </ul>
       </div>
     </div>
