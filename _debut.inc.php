@@ -1,7 +1,5 @@
-<?php
 
-?>
-<!DOCTYPE html>   
+<!DOCTYPE html>
 <!-- TITRE ET MENUS -->
 <html lang="fr">
 <head >
@@ -17,17 +15,18 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel="icon" type="image/png" href="./images\dolo.png" />
 </head>
 <body class="basePage">
 
 <!--  Tableau contenant le titre -->
    <div class=head>
-      <p class="titre">Maison des Ligues <br> 
+      <p class="titre">Maison des Ligues <br>
       </p>
       <p class="sous_titre"> H&eacute;bergement des groupes</p>
    </div>
 <!--<table width="100%" cellpadding="0" cellspacing="0">
-   <tr> 
+   <tr>
       <td class="titre">Maison des Ligues <br>
       <span id="texteNiveau2" class="texteNiveau2">
       H&eacute;bergement des groupes</span><br>&nbsp;
@@ -70,8 +69,9 @@
 
           <li><a href="listeEtablissements.php">Gestion établissements des ligues</a></li>
           <li><a href="consultationAttributions.php">Attributions chambres</a></li>
-          <?php 
+          <?php
                 echo"<li><a href='deconnexion.php'>déconnexion</a></li>";
+
             ?>
         </ul>
         <ul class="nav navbar-nav navbar-right">

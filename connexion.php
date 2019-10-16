@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("_debut.inc.php");
-include("_gestionBase.inc.php"); 
+include("_gestionBase.inc.php");
 include("_controlesEtGestionErreurs.inc.php");
 
 // CONNEXION AU SERVEUR MYSQL PUIS SÉLECTION DE LA BASE DE DONNÉES festival
@@ -17,21 +17,21 @@ if (!$connexion)
 echo "
 	<form method='POST' action='connexion.php?'>
   	 <input type='hidden' value='validerConnexion' name='action'>
-  	 <table width='85%' align='center' cellspacing='0' cellpadding='0' 
+  	 <table width='85%' align='center' cellspacing='0' cellpadding='0'
    	 class='tabNonQuadrille'>
-   
+
       <tr class='enTeteTabNonQuad'>
          <td colspan='3'>Connexion</td>
       </tr>
       <tr class='ligneTabNonQuad'>
          <td> Id*: </td>
-         <td><input type='text' name='id' size ='10' 
+         <td><input type='text' name='id' size ='10'
          maxlength='8'></td>
       </tr>";
       echo '
       <tr class="ligneTabNonQuad">
          <td> mot de passe*: </td>
-         <td><input type="password" name="motdepasse" size="30" 
+         <td><input type="password" name="motdepasse" size="30"
          maxlength="45"></td>
       </tr>
 	</table>';
@@ -47,17 +47,30 @@ echo "
 if (isset($_POST['valider']))
 {
 	$reqId = "select motdepasse FROM admin WHERE id = :id";
-   $req1 = $connexion->prepare($reqId); 
+   $req1 = $connexion->prepare($reqId);
    $req1-> execute(array( 'id'=> $_POST['id']));
 	$resultat = $req1->fetch()[0];
 
-// TODO use password_verify 
+
+  $reqpass = "select pass FROM etablissement WHERE id = :id";
+   $reqp1 = $connexion->prepare($reqpass);
+   $reqp1-> execute(array( 'id'=> $_POST['id']));
+	$resultat1 = $reqp1->fetch()[0];
+
+// TODO use password_verify
 	if (password_verify($_POST['motdepasse'], $resultat))
 	{
 		$_SESSION['id'] = $_POST['id'];
       echo "connecté";
 		header('location:index.php');
-	} 
+	}
+  if (password_verify($_POST['motdepasse'], $resultat1))
+  {
+    $_SESSION['id'] = $_POST['id'];
+      echo "connecté";
+		header('location:index.php');
+  }
+
 	else
 	 {
 		echo "Il semble que votre identifiant ou votre mot de passe soient incorrects. Veuillez essayer à nouveau, s'il vous plaît";

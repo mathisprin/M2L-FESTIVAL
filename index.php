@@ -5,8 +5,12 @@ if (empty($_SESSION['id']))
 {
     echo '<center><font color="red" size="4"><b>Vous devez vous connecter pour acceder à l\'application</center></font><br />
     <FORM ACTION="connexion.php">
-    <center><INPUT TYPE="SUBMIT" VALUE="Se connecter" id="submit"></center>
-  </FORM>';
+      <center><INPUT TYPE="SUBMIT" VALUE="Se connecter" id="submit"></center>
+    </FORM>';
+    echo
+    '<FORM ACTION="InscriptionEtablissement.php">
+      <center><INPUT TYPE="SUBMIT" VALUE="Inscription Etablissement" id="submit"></center>
+    </FORM>';
 
 }
 else
@@ -21,4 +25,12 @@ else
           - Consulter, réaliser ou modifier les attributions des chambres aux groupes dans les établissements.</p>
       </ul>
    </div>";
+   if($_SESSION['id']=='ADMIN')
+   {
+     echo
+     '<FORM ACTION="listeAttente.php">
+       <center><INPUT TYPE="SUBMIT" VALUE="Établissement en liste d\'attente" id="submit"></center>
+     </FORM>';
+   }
+
 }

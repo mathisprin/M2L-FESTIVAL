@@ -14,7 +14,7 @@ if (!$connexion)
    exit();
 }
 session_start();
-if (empty($_SESSION['id']))
+if ($_SESSION['id']!='ADMIN')
 {
     header("location:index.php");
 
@@ -32,23 +32,17 @@ echo "
       <tr class='enTeteTabNonQuad'>
          <td colspan='4'>Etablissements</td>
       </tr>";
-   $iden=$_SESSION['id'];
-   if ($_SESSION['id'] == 'ADMIN') {
-     $req = obtenirReqEtablissements();
-     $rsEtab = $connexion->query($req);
-     $lgEtab = $rsEtab->fetch();
-   }
-   else
-   {
 
-     $req="select id, nom from Etablissement where id='$iden' order by id";
-     $rsEtab = $connexion->query($req);
-     $lgEtab = $rsEtab->fetch();
-   }
+      $req="select pseudo, nom from Inscription where etat = 0 order by pseudo";
+      $rsEtab = $connexion->query($req);
+      $lgEtab = $rsEtab->fetch();
+
+
+
    // BOUCLE SUR LES ÉTABLISSEMENTS
    while ($lgEtab!=FALSE)
    {
-      $id=$lgEtab['id'];
+      $id=$lgEtab['pseudo'];
       $nom=$lgEtab['nom'];
       //$nbpersonne=$lgEtab['nombrePersonnes'];
       echo "
@@ -56,12 +50,8 @@ echo "
          <td width='52%'>$nom</td>
 
          <td width='16%' align='center'>
-         <a href='detailEtablissement.php?id=$id' class ='btn btn-light'>
-         Voir détail</a></td>
-
-         <td width='16%' align='center'>
-         <a href='modificationEtablissement.php?action=demanderModifEtab&amp;id=$id' class ='btn btn-light'>
-         Modifier</a></td>";
+         <a href='detailListe.php?id=$id' class ='btn btn-light'>
+         Voir détail</a></td>";
 
          // S'il existe déjà des attributions pour l'établissement, il faudra
          // d'abord les supprimer avant de pouvoir supprimer l'établissement

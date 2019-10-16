@@ -4,6 +4,7 @@ include("_debut.inc.php");
 include("_gestionBase.inc.php");
 include("_controlesEtGestionErreurs.inc.php");
 
+
 // CONNEXION AU SERVEUR MYSQL PUIS SÉLECTION DE LA BASE DE DONNÉES festival
 
 $connexion=connect();

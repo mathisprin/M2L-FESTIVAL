@@ -22,23 +22,31 @@ function connect()
 // FONCTIONS DE GESTION DES ÉTABLISSEMENTS
 
 function obtenirReqEtablissements()
-{ 
+{
 
    $req="select id, nom from Etablissement  order by id";
 
    return $req;
 }
 
+function EtablisteAttente()
+{
+
+   $req="select id, nom from Inscription  order by id";
+
+   return $req;
+}
+
 function obtenirReqEtablissementsOffrantChambres()
 {
-   $req="select id, nom, nombreChambresOffertes from Etablissement where 
-         nombreChambresOffertes!=0 order by id";
+    $req="select id, nom, nombreChambresOffertes from Etablissement where
+      nombreChambresOffertes!=0 order by id";
    return $req;
 }
 
 function obtenirReqEtablissementsAyantChambresAttribuées()
 {
-   $req="select distinct id, nom, nombreChambresOffertes from Etablissement, 
+   $req="select distinct id, nom, nombreChambresOffertes from Etablissement,
          Attribution where id = idEtab order by id";
    return $req;
 }
@@ -50,51 +58,64 @@ function obtenirDetailEtablissement($connexion, $id)
    return $rsEtab->fetch(PDO::FETCH_ASSOC);
 }
 
+function obtenirDetailListe($connexion, $id)
+{
+   $req="select * from Inscription where id='$pseudo'";
+   $rsEtab=$connexion->query($req);
+   return $rsEtab->fetch(PDO::FETCH_ASSOC);
+}
+
 function supprimerEtablissement($connexion, $id)
 {
    $req="delete from Etablissement where id='$id'";
       $connexion->query($req);
 }
- 
-function modifierEtablissement($connexion, $id, $nom, $adresseRue, $codePostal, 
-                               $ville, $tel, $adresseElectronique, $type, 
-                               $civiliteResponsable, $nomResponsable, 
+
+function supprimerListe($connexion, $pseudo)
+{
+   $req="delete from Inscription where pseudo='$pseudo'";
+      $connexion->query($req);
+}
+
+function modifierEtablissement($connexion, $id, $nom, $adresseRue, $codePostal,
+                               $ville, $tel, $adresseElectronique, $type,
+                               $civiliteResponsable, $nomResponsable,
                                $prenomResponsable, $nombreChambresOffertes,$infosP)
-{  
+{
    $nom=str_replace("'", "''", $nom);
    $adresseRue=str_replace("'","''", $adresseRue);
    $ville=str_replace("'","''", $ville);
    $adresseElectronique=str_replace("'","''", $adresseElectronique);
    $nomResponsable=str_replace("'","''", $nomResponsable);
    $prenomResponsable=str_replace("'","''", $prenomResponsable);
-  
+
    $req="update Etablissement set nom='$nom',adresseRue='$adresseRue',
          codePostal='$codePostal',ville='$ville',tel='$tel',
          adresseElectronique='$adresseElectronique',type='$type',
          civiliteResponsable='$civiliteResponsable',nomResponsable=
          '$nomResponsable',prenomResponsable='$prenomResponsable',
          nombreChambresOffertes='$nombreChambresOffertes',infosP='$infosP' where id='$id'";
-   
+
       $connexion->query($req);
 }
 
-function creerEtablissement($connexion, $id, $nom, $adresseRue, $codePostal, 
-                            $ville, $tel, $adresseElectronique, $type, 
-                            $civiliteResponsable, $nomResponsable, 
+function creerEtablissement($connexion, $id, $nom, $adresseRue, $codePostal,
+                            $ville, $tel, $adresseElectronique, $type,
+                            $civiliteResponsable, $nomResponsable,
                             $prenomResponsable, $nombreChambresOffertes,$infosP)
-{ 
+{
    $nom=str_replace("'", "''", $nom);
    $adresseRue=str_replace("'","''", $adresseRue);
    $ville=str_replace("'","''", $ville);
    $adresseElectronique=str_replace("'","''", $adresseElectronique);
    $nomResponsable=str_replace("'","''", $nomResponsable);
    $prenomResponsable=str_replace("'","''", $prenomResponsable);
-   
-   $req="insert into Etablissement values ('$id', '$nom', '$adresseRue', 
-         '$codePostal', '$ville', '$tel', '$adresseElectronique', '$type', 
+
+   $req="insert into Etablissement values ('$id', '$nom', '$adresseRue',
+         '$codePostal', '$ville', '$tel', '$adresseElectronique', '$type',
          '$civiliteResponsable', '$nomResponsable', '$prenomResponsable',
          '$nombreChambresOffertes','$infosP')";
-   
+
    $connexion->query($req);
 }
 
@@ -110,7 +131,7 @@ function estUnNomEtablissement($connexion, $mode, $id, $nom)
 {
    $nom=str_replace("'", "''", $nom);
    // S'il s'agit d'une création, on vérifie juste la non existence du nom sinon
-   // on vérifie la non existence d'un autre établissement (id!='$id') portant 
+   // on vérifie la non existence d'un autre établissement (id!='$id') portant
    // le même nom
    if ($mode=='C')
    {
@@ -134,15 +155,15 @@ function obtenirNbEtab($connexion)
 
 function obtenirNbEtabOffrantChambres($connexion)
 {
-   $req="select count(*) as nombreEtabOffrantChambres from Etablissement where 
+   $req="select count(*) as nombreEtabOffrantChambres from Etablissement where
          nombreChambresOffertes!=0";
    $rsEtabOffrantChambres=$connexion->query($req);
    $lgEtabOffrantChambres=$rsEtabOffrantChambres->fetch(PDO::FETCH_ASSOC);
    return $lgEtabOffrantChambres["nombreEtabOffrantChambres"];
 }
 
-// Retourne false si le nombre de chambres transmis est inférieur au nombre de 
-// chambres occupées pour l'établissement transmis 
+// Retourne false si le nombre de chambres transmis est inférieur au nombre de
+// chambres occupées pour l'établissement transmis
 // Retourne true dans le cas contraire
 function estModifOffreCorrecte($connexion, $idEtab, $nombreChambres)
 {
@@ -154,7 +175,7 @@ function estModifOffreCorrecte($connexion, $idEtab, $nombreChambres)
 
 function obtenirReqIdNomGroupesAHeberger()
 {
-   $req="select id, nom from Groupe where hebergement='O' order by id";
+   $req="select id, nom ,nombrePersonnes from Groupe where hebergement='O' order by id";
    return $req;
 }
 
@@ -168,7 +189,7 @@ function obtenirNomGroupe($connexion, $id)
 
 // FONCTIONS RELATIVES AUX ATTRIBUTIONS
 
-// Teste la présence d'attributions pour l'établissement transmis    
+// Teste la présence d'attributions pour l'établissement transmis
 function existeAttributionsEtab($connexion, $id)
 {
    $req="select * From Attribution where idEtab='$id'";
@@ -212,11 +233,24 @@ function modifierAttribChamb($connexion, $idEtab, $idGroupe, $nbChambres)
 // dans l'établissement transmis
 function obtenirReqGroupesEtab($id)
 {
-   $req="select distinct id, nom from Groupe, Attribution where 
+   $req="select distinct id, nom , nombrePersonnes from Groupe, Attribution where
         Attribution.idGroupe=Groupe.id and idEtab='$id'";
    return $req;
 }
-            
+function obtenirnbPersonne($id)
+{
+  $requete="select distinct id,nombrePersonnes from Groupe, Attribution where
+       Attribution.idGroupe=Groupe.id and idEtab='$id'";
+  return $requete;
+}
+
+function ChambreGroupe($idGroupe)
+{
+  $req1="select SUM(nombreChambres) FROM attribution,groupe where attribution.idGroupe = groupe.id AND groupe.id= '$idGroupe'";
+  return $req1;
+}
+
+
 // Retourne le nombre de chambres occupées par le groupe transmis pour l'id étab
 // et l'id groupe transmis
 function obtenirNbOccupGroupe($connexion, $idEtab, $idGroupe)
@@ -231,4 +265,3 @@ function obtenirNbOccupGroupe($connexion, $idEtab, $idGroupe)
 }
 
 ?>
-
